@@ -31,7 +31,7 @@ class CountyTable extends TableEntity {
      * Returns a partial record (countyName only by ID)
      * 
      * @param string $idcounty
-     * @return mixed Returns false on failure. For successful SELECT returns a mysqli_result object $rs
+     * @return bool|mysqli_result Returns false on failure. For successful SELECT returns a mysqli_result object $rs
      */ 
     public function getRecordByID($idcounty){
         $this->SQL="SELECT countyName FROM county WHERE idcounty='$idcounty'";
