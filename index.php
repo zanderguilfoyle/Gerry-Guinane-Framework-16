@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This is the entry point for this web application
  *
@@ -72,7 +73,7 @@ include_once 'models/navigationBarContent/NavigationManager.php';
 include_once 'models/navigationBarContent/NavigationCustomer.php';
 include_once 'models/navigationBarContent/NavigationAdmin.php';
 
-//PPage [Panel Content] Model Classes  - Common to all user types:
+//Page [Panel Content] Model Classes  - Common to all user types:
 include_once 'models/panelContent/GeneralHome.php';
 include_once 'models/panelContent/UnderConstruction.php';
 include_once 'models/panelContent/UserAccountAdmin.php';
@@ -101,7 +102,13 @@ include_once 'models/panelContent/ManagerMyAccount.php';
 $errorNo = 0000; //initialise to error code zero
 $errorMsg = '';  //initialise to empty error message
 
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT); //Sets mysqli error reporting mode, Throw mysqli_sql_exception for all errors
+
+$DBServer = '';
+$DBUser = '';
+$DBPass = '';
+$DBName = '';
+$DBportNr = '';
+// TODO: database variables are coming back as not set - need to check why
 $db = new mysqli($DBServer, $DBUser, $DBPass, $DBName, $DBportNr);
 
 //Diagnose and fix MySQL database and MySQL connection related problems if DEBUG mode is turned on 

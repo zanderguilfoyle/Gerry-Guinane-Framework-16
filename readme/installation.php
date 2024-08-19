@@ -11,7 +11,7 @@
 */
 
 include_once '../config/config.php'; 
-include_once '../config/database.php'; 
+
 ?>
 
 
@@ -24,8 +24,7 @@ include_once '../config/database.php';
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo PAGE_TITLE;?></title>
     <!--
-    <!--
-    <!--
+
     --Load the bootstrap scripts by reference
     --Note the use of the 'integrity' property
     --More info on that property here: https://blog.compass-security.com/2015/12/subresource-integrity-html-attribute/

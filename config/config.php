@@ -23,7 +23,7 @@ define ('FRAMEWORK_VERSION','16.20240312');  //The current release version of th
  * @global Boolean DEBUG_MODE True for DEBUG mode turned on
  *
  */
-define ('DEBUG_MODE',FALSE);  //True for DEBUG mode turned on
+define ('DEBUG_MODE',TRUE);  //True for DEBUG mode turned on
 
 
 /**
@@ -62,7 +62,7 @@ $serverIP_address='127.0.0.1';  //network IP address and port nr (eg 172.19.59.2
  * @var String $root_path - document root path of the Apache Web Server (Part of AJAX live chat configuration)
  *
  */
-$root_path='k00999999/framework_16/'; //path from htdocs folder to the default page (usually index.php) of this web application
+$root_path='k00287168/framework_16/'; //path from htdocs folder to the default page (usually index.php) of this web application
 
 /**
  *
