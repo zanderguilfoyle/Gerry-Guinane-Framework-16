@@ -359,7 +359,7 @@ public static function form_add_msg($pageID){
 
         $form.='<div class="form-group">';
 
-        $form.='<label for="playname">Create a name for playlistSSSS</label><textarea class="form-control" id="playname" name="playname" rows="1" style="resize:vertical"></textarea> ';
+        $form.='<label for="playname">Create a name for playlist</label><textarea class="form-control" id="playname" name="playname" rows="1" style="resize:vertical"></textarea> ';
         $form.='<label for="playsong">How many songs in playlist</label><textarea class="form-control" id="playsong" name="playsong" rows="1" style="resize:vertical"></textarea> ';
 
         $form.='<label for="public">Is the playlist public or private<br>(public 1, private 0)</label><input type="number" class="form-control" id="public" name="public" min="0" max="1" >';

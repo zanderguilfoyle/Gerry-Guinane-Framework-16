@@ -102,11 +102,11 @@ class CustomerPlaylists extends PanelModel
                 array_push($this->panelModelObjects, $table); #for diagnostic purposes
                 break;
             case "createplay":
-                $this->createPlayListIfRequest();
-                $this->panelContent_1 = Form::form_createplay($this->pageID);
+                $this->createPlayListIfRequested();
+                $this->panelContent_1 .= Form::form_createplay($this->pageID);
                 break;
             default:
-                $this->panelContent_1 = 'playlist';
+                $this->panelContent_1 .= 'playlist';
                 break;
         }//end switch
     }
@@ -290,17 +290,17 @@ class CustomerPlaylists extends PanelModel
     /**
      * @return void
      */
-    public function createPlayListIfRequest(): void
+    public function createPlayListIfRequested(): void
     {
         if ($this->isPlayListSaveButtonPresent()) {
             $table = new PlaylistTable($this->db);
             if ($table->addRecord($this->postArray, $this->user->getUserID())) {
-                $this->panelContent_1 = 'Playlist Added Successfully';
+                $this->panelContent_1 .= 'Playlist Added Successfully<br>';
             } else {
-                $this->panelContent_1 = 'Unable to add playlist';
+                $this->panelContent_1 .= 'Unable to add playlist<br>';
             }
         } else {
-            $this->panelContent_1 = 'Create a new playlist';
+            $this->panelContent_1 .= 'Create a new playlist';
         }
     }
 
