@@ -79,14 +79,56 @@ class NavigationCustomer implements NavigationInterface {
                 //handlers for logged in user
                 switch ($this->pageID) {
                     case "home":
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=charts">Charts</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=playlist">Playlists</a></li>';
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=messages">Messages</a></li>';
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=myAccount">My Account</a></li>';
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Log Out</a></li>';
                         break;
-
+                    case "charts":
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=playlist">Playlists</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=messages">Messages</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=myAccount">My Account</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Log Out</a></li>';
+                        break;
+                        //Create a playlist
+                    case "playlist":
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=viewplay">View</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=createplay">Create</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=deleteplay">Delete</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Log Out</a></li>';
+                        break;
+                    case "viewplay":
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=playlist">Playlist</a></li>';
+                        //$this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=viewplay">View</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=createplay">Create</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=deleteplay">Delete</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Log Out</a></li>';
+                        break;
+                    case "createplay":
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=playlist">Playlist</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=viewplay">View</a></li>';
+                        //$this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=createplay">Create</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=deleteplay">Delete</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Log Out</a></li>';
+                        break;
+                    case "deleteplay":
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=playlist">Playlist</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=viewplay">View</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=createplay">Create</a></li>';
+                        //$this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=deleteplay">Delete</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Log Out</a></li>';
+                        break;
                     //My Account 
                     case "myAccount":
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=charts">Charts</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=playlist">Playlists</a></li>';
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=editAccount">Edit Details</a></li>';
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=changePassword">Password Change</a></li>';
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=logout">Log Out</a></li>';
@@ -107,6 +149,8 @@ class NavigationCustomer implements NavigationInterface {
                     //Messages
                     case "messages":
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=home">Home</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=charts">Charts</a></li>';
+                        $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=playlist">Playlists</a></li>';
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=livechat">Live Chat</a></li>';
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=viewMsgs">View</a></li>';
                         $this->menuNav.='<li><a href="'.$_SERVER['PHP_SELF'].'?pageID=sendMsg">Send</a></li>';

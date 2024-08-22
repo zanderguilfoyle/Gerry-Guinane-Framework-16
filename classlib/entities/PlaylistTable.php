@@ -1,0 +1,175 @@
+<?php
+/**
+* This file contains the ChatMsgTable Class
+* 
+*/
+
+/**
+ * 
+ * ChatMsgTable entity class implements the table entity class for the 'chatmsg' table in the database. 
+ * 
+ * @author Gerry Guinane
+ * 
+ */
+
+class PlaylistTable extends TableEntity {
+
+
+    const TABLE_NAME = 'playlists';
+    /**
+     * Constructor for the TableEntity Class
+     * 
+     * @param MySQLi $databaseConnection  The database connection object. 
+     */
+    function __construct($databaseConnection){
+        parent::__construct($databaseConnection,'playlists');  //the name of the table is passed to the parent constructor
+    }
+
+    public function getAllRecords($userID)
+    {
+        $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE public=1 OR owner='$userID'";
+        $rs = $this->db->query($sql);
+        if($rs->num_rows){
+            return $rs;
+        }
+        else{
+            return false;
+        }
+    }
+
+    
+
+     /**
+     * Performs a DELETE query for a single record ($msgID).  Verifies the
+     * record exists before attempting to delete
+     * 
+     * @param $msgID  String containing ID of user record to be deleted
+     * 
+     * @return boolean Returns FALSE on failure. For successful DELETE returns TRUE
+     */
+    public function deleteRecordbyID($msgID){
+        
+        if($this->getRecordByID($msgID)){ //confirm the record exists before deletig
+            $this->SQL = "DELETE FROM chatmsg WHERE msgID='$msgID'";
+            $this->db->query($this->SQL); //delete the record
+            
+            //execute the query
+            try {
+                $rs=$this->db->query($this->SQL);
+                return TRUE;
+            } catch (mysqli_sql_exception $e) { //catch the exception 
+                    $this->MySQLiErrorNr=$e->getCode();
+                    $this->MySQLiErrorMsg=$e->getMessage();
+                return false;
+            }
+        }
+        else{
+            return false;
+        }       
+    }
+
+    /**
+     * Performs a SELECT query to returns all records from the table where messages are TO the specified user or ALL users.
+     *
+     * @param string $userID The user's unique ID
+     *
+     * @return mixed Returns false on failure. For successful SELECT returns a mysqli_result object $rs
+     */
+    public function getUserAuthoredPlaylists($userID){
+        $this->SQL = "SELECT * FROM " . self::TABLE_NAME . " WHERE owner='$userID'";
+
+        $rs=$this->db->query($this->SQL);
+
+        //check the recordset is not empty
+        if($rs->num_rows){
+            return $rs;
+        }
+        else{
+            return false;
+        }
+
+    }
+
+
+    /**
+     * Performs a SELECT query to returns all records from the table where messages are TO the specified user or ALL users and NOT authored by the specified user 
+     *
+     * @param string $userID The user's unique ID
+     * 
+     * @return mixed Returns false on failure. For successful SELECT returns a mysqli_result object $rs
+     */
+     public function getRecords($userID){
+        $this->SQL = "SELECT idplaylists,name,owner,songs,public FROM playlists WHERE (owner='$userID' OR public=1)";
+
+         $rs=$this->db->query($this->SQL);
+
+        if($rs->num_rows){
+            return $rs;
+        }
+        else{
+            return false;
+        }        
+        
+    }   
+
+
+    /**
+     * Inserts a new record in the table. 
+     * 
+     * @param array $postArray containing data to be inserted
+         * $postArray['firstName'] string FirstName
+         * $postArray['lastName'] string LastName
+         * $postArray['pass1'] string PassWord
+         * $postArray['email'] string email
+         * $postArray['mobile'] string mobile
+     * 
+     * @param String $userID The users unique identifier (email address)
+     * @param String $userType The users type - eg ADMIN,CUSTOMER, MANAGER
+     * @param String $owner The recipients unique identifier (email address)
+     * 
+     * @return boolean TRUE if message is added successfully , else FALSE
+     * 
+     * 
+     */   
+    public function addRecord($postArray,$userID,$userType,$owner){
+        
+        //get the values entered in the registration form contained in the $postArray argument     
+        extract($postArray);
+        
+        //add escape to special characters
+        $message= addslashes($message);
+        $msgTo= addslashes($msgTo);
+        $msgTo=strtolower($msgTo);
+        
+        //Note - this function does not validate that the $msgTo user  ID is valid. 
+        
+        //check if $msgTo is empty if it is - set it to ALL recipients
+        if(!$msgTo) {$msgTo='ALL';}
+     
+        //construct the INSERT SQL
+        $this->SQL="INSERT INTO chatmsg (msgText,msgAuthorID,userType,msgTo) VALUES ('$message','$userID','$userType','$msgTo')";  
+       
+        
+        //try to execute the query
+        try {
+                $rs=$this->db->query($this->SQL);
+                if($rs){ //check the insert query worked
+                    return $rs; //return the requested recordset
+                }
+                else{
+                    return false;  //no records found
+                }  
+        } catch (mysqli_sql_exception $e) { //catch the exception 
+                $this->MySQLiErrorNr=$e->getCode();
+                $this->MySQLiErrorMsg=$e->getMessage();
+                return false;  //the query failed for some reason
+            }   
+        
+        
+    }
+  
+    
+   
+    
+}
+

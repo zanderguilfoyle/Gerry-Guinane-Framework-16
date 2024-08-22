@@ -54,18 +54,61 @@ class CustomerController extends Controller  {
                     //update the view
                     include_once 'views/view_navbar_2_panel.php';  //load the view                      
                     break;      
-                case "newMenuItem": 
+                case "charts":
                     //create objects to generate view content
-                    $contentModel = new UnderConstruction($this->user,$this->db, $this->postArray ,$this->pageTitle, strtoupper($this->getArray['pageID']),$this->getArray['pageID']);
+                    $contentModel = new CustomerCharts($this->user,$this->db, $this->postArray ,$this->pageTitle, strtoupper($this->getArray['pageID']),$this->getArray['pageID']);
                     $navigationModel = new NavigationCustomer($this->user, $this->getArray['pageID']);
                     array_push($this->controllerObjects,$navigationModel,$contentModel);
-                    $data = $this->getPageContent($contentModel,$navigationModel);  //get the page content from the models                 
+                    $data = $this->getPageContent($contentModel,$navigationModel);  //get the page content from the models
                     $this->viewData = $data;  //put the content array into a class property for diagnostic purpose
                     //update the view
-                    include_once 'views/view_navbar_2_panel.php'; //load the view                  
-                    break; 
+                    include_once 'views/view_navbar_2_panel.php';  //load the view
+                    break;
 
-                
+
+                case "playlist":
+                    //create objects to generate view content
+                    $contentModel = new CustomerPlaylists($this->user,$this->db, $this->postArray ,$this->pageTitle, strtoupper($this->getArray['pageID']),$this->getArray['pageID']);
+                    $navigationModel = new NavigationCustomer($this->user, $this->getArray['pageID']);
+                    array_push($this->controllerObjects,$navigationModel,$contentModel);
+                    $data = $this->getPageContent($contentModel,$navigationModel);  //get the page content from the models
+                    $this->viewData = $data;  //put the content array into a class property for diagnostic purpose
+                    //update the view
+                    include_once 'views/view_navbar_1_panel.php';  //load the view
+                    break;
+
+                case "viewplay":
+                    //create objects to generate view content
+                    $contentModel = new CustomerPlaylists($this->user,$this->db, $this->postArray ,$this->pageTitle, strtoupper($this->getArray['pageID']),$this->getArray['pageID']);
+                    $navigationModel = new NavigationCustomer($this->user, $this->getArray['pageID']);
+                    array_push($this->controllerObjects,$navigationModel,$contentModel);
+                    $data = $this->getPageContent($contentModel,$navigationModel);  //get the page content from the models
+                    $this->viewData = $data;  //put the content array into a class property for diagnostic purpose
+                    //update the view
+                    include_once 'views/view_navbar_1_panel.php';  //load the view
+                    break;
+                case "createplay":
+                    //create objects to generate view content
+                    $contentModel = new CustomerPlaylists($this->user,$this->db, $this->postArray ,$this->pageTitle, strtoupper($this->getArray['pageID']),$this->getArray['pageID']);
+                    $navigationModel = new NavigationCustomer($this->user, $this->getArray['pageID']);
+                    array_push($this->controllerObjects,$navigationModel,$contentModel);
+                    $data = $this->getPageContent($contentModel,$navigationModel);  //get the page content from the models
+                    $this->viewData = $data;  //put the content array into a class property for diagnostic purpose
+                    //update the view
+                    include_once 'views/view_navbar_2_panel.php';  //load the view
+                    break;
+                case "deleteplay":
+                    //create objects to generate view content
+                    $contentModel = new CustomerPlaylists($this->user,$this->db, $this->postArray ,$this->pageTitle, strtoupper($this->getArray['pageID']),$this->getArray['pageID']);
+                    $navigationModel = new NavigationCustomer($this->user, $this->getArray['pageID']);
+                    array_push($this->controllerObjects,$navigationModel,$contentModel);
+                    $data = $this->getPageContent($contentModel,$navigationModel);  //get the page content from the models
+                    $this->viewData = $data;  //put the content array into a class property for diagnostic purpose
+                    //update the view
+                    include_once 'views/view_navbar_1_panel.php';  //load the view
+                    break;
+
+
                 //My Account 
                 case "myAccount":
                     //create objects to generate view content

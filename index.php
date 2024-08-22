@@ -56,10 +56,12 @@ include 'classlib/helperClasses/HelperHTML.php';
 include_once 'forms/Form.php';
 
 //Database Table Entity Classes:
+include_once 'classlib/entities/ChartsTable.php';
 include_once 'classlib/entities/UserTable.php';
 include_once 'classlib/entities/UserTypeTable.php';
 include_once 'classlib/entities/CountyTable.php';
 include_once 'classlib/entities/ChatMsgTable.php';
+include_once 'classlib/entities/PlaylistTable.php';
 
 //Controller Classes for specific user types:
 include_once 'controllers/GeneralController.php';
@@ -87,6 +89,8 @@ include_once 'models/panelContent/AdminManageUsers.php';
 
 //Page [Panel Content] Model Classes - CUSTOMER user
 include_once 'models/panelContent/CustomerHome.php';
+include_once 'models/panelContent/CustomerCharts.php';
+include_once 'models/panelContent/CustomerPlaylists.php';
 include_once 'models/panelContent/CustomerMyAccount.php';
 include_once 'models/panelContent/CustomerMessages.php';
 
@@ -102,12 +106,6 @@ include_once 'models/panelContent/ManagerMyAccount.php';
 $errorNo = 0000; //initialise to error code zero
 $errorMsg = '';  //initialise to empty error message
 
-
-$DBServer = '';
-$DBUser = '';
-$DBPass = '';
-$DBName = '';
-$DBportNr = '';
 // TODO: database variables are coming back as not set - need to check why
 $db = new mysqli($DBServer, $DBUser, $DBPass, $DBName, $DBportNr);
 

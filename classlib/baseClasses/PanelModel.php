@@ -264,7 +264,7 @@ abstract class PanelModel implements PanelModelInterface {
      * @return string $diagnostic Diagnostic information in HTML format relating to the class properties
      */
     public function getDiagnosticInfo(){
-        $diagnostic = '<div class="container-fluid"   style="background-color: #AAAAC0">'; //outer DIV
+        $diagnostic = '<div class="container-fluid"   style="background-color: #22AAAA">'; //outer DIV
             $diagnostic .= '<h3>PANEL MODEL CLASS: '.$this->modelType.' - properties</h3>';
             $diagnostic .= '<table border=1 border-style: dashed; style="background-color: #EEEEE0" >';
             $diagnostic .= '<tr><th>PROPERTY</th><th>VALUE</th></tr>';

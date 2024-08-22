@@ -18,7 +18,7 @@
  */
 
 
-class CustomerHome extends PanelModel{
+class CustomerCharts extends PanelModel{
 
 
     /**
@@ -45,21 +45,26 @@ class CustomerHome extends PanelModel{
      * Set the Panel 1 heading 
      */
     public function setPanelHead_1(){
-            $this->panelHead_1='<h3>Welcome to zpotify</h3>';
+            $this->panelHead_1='<h3>Here are the top charts</h3>';
     }
     
     /**
     * Set the Panel 1 text content 
     */   
     public function setPanelContent_1(){
-        $this->panelContent_1.='Zpotify is a music streaming service that allows you to listen to music on demand. You can search for music, create playlists, and listen to music on the go. Zpotify has a vast library of music, so you can listen to all your favorite songs. Sign up today and start listening to music!<br><br> You are logged in as a customer'; ;
+        $table=new ChartsTable($this->db);
+        $rs=$table->getAllRecords();
+        $this->panelContent_1= HelperHTML::generateTABLE($rs);
+        array_push($this->panelModelObjects,$table);
+
+
     }       
 
     /**
      * Set the Panel 2 heading 
      */
     public function setPanelHead_2(){
-        $this->panelHead_2='<h3>Welcome to your Customer Home Page</h3>';
+        $this->panelHead_2='<h3>Top Charts</h3>';
     }
 
     
@@ -68,7 +73,7 @@ class CustomerHome extends PanelModel{
      */       
     public function setPanelContent_2(){
         //set the Middle panel content
-         $this->panelContent_2='Thank you <b>'.$this->user->getUserFirstName().' '.$this->user->getUserLastName() .'</b> for logging in successfully as a CUSTOMER to the sample Web Application Framework. Please use the links above to manage your account and send/receive messages. <br><br>Don\'t forget to logout when you are done.';
+         $this->panelContent_2='This page allows you to view the top charts. only an admin or a manager can add or delete a chart<br><br>The length of the songs is displayed in seconds';
     } 
 
     /**

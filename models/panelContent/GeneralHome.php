@@ -41,7 +41,7 @@ class GeneralHome extends PanelModel{
      * Set the Panel 1 heading 
      */
     public function setPanelHead_1(){
-            $this->panelHead_1='<h3>Web Application Framework</h3>';
+            $this->panelHead_1='<h3>Zpotify</h3>';
     }
 
     
@@ -66,14 +66,14 @@ class GeneralHome extends PanelModel{
     */      
     public function setPanelContent_2(){
         //set the Middle panel content      
-        $this->panelContent_2='You are required to login - Please use the link above to login. This login page supports login for 3 user types: ADMIN, MANAGER and CUSTOMER. <br><br> Refer to the set up instructions for some sample logins. ';          
+        $this->panelContent_2='<p>You must be logged in to use this system.  If you are a registered user, please log in.  If you are not a registered user, please register.</p>';
     }
 
     /**
      * Set the Panel 3 heading 
      */
     public function setPanelHead_3(){        
-            $this->panelHead_3='<h3>Application Setup</h3>';
+            $this->panelHead_3='<h3>Zpotify</h3>';
     }  
 
     
@@ -81,7 +81,7 @@ class GeneralHome extends PanelModel{
     * Set the Panel 3 text content 
     */      
     public function setPanelContent_3(){  
-            $this->panelContent_3="<p>To set up this application read the following <a href='readme/installation.php' target='_blank' >SETUP INSTRUCTIONS</a></p>";   
+            $this->panelContent_3="<p>Zpotify can only be used as a user</p>";
     }        
 
 

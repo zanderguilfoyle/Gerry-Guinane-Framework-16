@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS `k00999999_framework_16`;
 CREATE DATABASE  IF NOT EXISTS `k00287168_framework_16` /*!40100 DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci */;
 USE `k00287168_framework_16`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
