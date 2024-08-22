@@ -130,42 +130,46 @@ class PlaylistTable extends TableEntity {
      * @return boolean TRUE if message is added successfully , else FALSE
      * 
      * 
-     */   
-    public function addRecord($postArray,$userID,$userType,$owner){
-        
-        //get the values entered in the registration form contained in the $postArray argument     
+     */
+    public function updateRecord($postArray,$userID){
+
+        //get the values entered in the registration form contained in the $postArray argument
         extract($postArray);
-        
+
         //add escape to special characters
-        $message= addslashes($message);
-        $msgTo= addslashes($msgTo);
-        $msgTo=strtolower($msgTo);
-        
-        //Note - this function does not validate that the $msgTo user  ID is valid. 
-        
-        //check if $msgTo is empty if it is - set it to ALL recipients
-        if(!$msgTo) {$msgTo='ALL';}
-     
-        //construct the INSERT SQL
-        $this->SQL="INSERT INTO chatmsg (msgText,msgAuthorID,userType,msgTo) VALUES ('$message','$userID','$userType','$msgTo')";  
-       
-        
-        //try to execute the query
-        try {
-                $rs=$this->db->query($this->SQL);
-                if($rs){ //check the insert query worked
-                    return $rs; //return the requested recordset
-                }
-                else{
-                    return false;  //no records found
-                }  
-        } catch (mysqli_sql_exception $e) { //catch the exception 
-                $this->MySQLiErrorNr=$e->getCode();
-                $this->MySQLiErrorMsg=$e->getMessage();
-                return false;  //the query failed for some reason
-            }   
-        
-        
+        $playname = addslashes($playname);//
+        $public = (int)$public;//
+        $songs = (int)$playsong;
+
+        $sql = "UPDATE " . self::TABLE_NAME . " "
+            . "SET "
+            . "name = '$playname',"
+            . "public = $public,"
+            . "songs = '$playsong',"
+            . "owner = '$userID',"
+            . "WHERE id=$id;";
+
+
+        $rs = $this->db->query($sql);
+
+        return $rs ? true : false;
+
+    }
+    public function addRecord($postArray,$userID){
+
+        //get the values entered in the registration form contained in the $postArray argument
+        extract($postArray);
+
+        //add escape to special characters
+        $playname = addslashes($playname);//
+        $public = (int)$public;//
+        $songs = (int)$playsong;
+
+        $sql = "INSERT INTO " . self::TABLE_NAME . " (name,public,songs,owner) VALUES ('$playname',$public,$playsong,'$userID')";
+        $rs = $this->db->query($sql);
+
+        return $rs ? true : false;
+
     }
   
     

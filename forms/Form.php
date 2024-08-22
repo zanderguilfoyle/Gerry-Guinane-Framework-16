@@ -345,7 +345,30 @@ public static function form_add_msg($pageID){
         $form.='</form>';
         $form.='</div>';
         return $form;
-}      
+}
+    /**
+     * Generates a HTML form for creating a playlist.
+     *
+     *
+     * @param string $pageID The pageID of the page which will be used to process the login form.
+     * @return string String containing the generated form.
+     */
+    public static function form_createplay($pageID){
+        $form='<div class="container-fluid">';
+        $form.='<form method="post" action="index.php?pageID='.$pageID.'">';
+
+        $form.='<div class="form-group">';
+
+        $form.='<label for="playname">Create a name for playlistSSSS</label><textarea class="form-control" id="playname" name="playname" rows="1" style="resize:vertical"></textarea> ';
+        $form.='<label for="playsong">How many songs in playlist</label><textarea class="form-control" id="playsong" name="playsong" rows="1" style="resize:vertical"></textarea> ';
+
+        $form.='<label for="public">Is the playlist public or private<br>(public 1, private 0)</label><input type="number" class="form-control" id="public" name="public" min="0" max="1" >';
+        $form.='</div> ';
+        $form.='<button type="submit" class="btn btn-default" value="create-playlist-button" name="create-playlist-button">Submit Message</button>';
+        $form.='</form>';
+        $form.='</div>';
+        return $form;
+    }
 
     
 /**

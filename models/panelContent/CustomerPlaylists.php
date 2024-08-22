@@ -284,7 +284,7 @@ class CustomerPlaylists extends PanelModel
      */
     public function isPlayListSaveButtonPresent(): bool
     {
-        return isset($this->postArray['btnAddPlaylist']);
+        return isset($this->postArray['create-playlist-button']);
     }
 
     /**
