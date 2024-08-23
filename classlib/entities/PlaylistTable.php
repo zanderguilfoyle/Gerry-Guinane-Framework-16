@@ -45,7 +45,7 @@ class PlaylistTable extends TableEntity
      */
     public function getPlaylistById(string $id): mysqli_result|bool
     {
-        $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE idplaylist =$id";
+        $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE idplaylists =$id";
         $result = $this->db->query($sql);
         if ($result->num_rows === 1) {
             return $result;
