@@ -86,9 +86,9 @@ class ChartsTable extends TableEntity
         //get the values entered in the registration form contained in the $postArray argument
         extract($postArray);
         //add escape to special characters
-        $name = addslashes($name);
 
-        $sql = "INSERT INTO " . self::TABLE_NAME . " (name) VALUES ('$name')";
+
+        $sql = "INSERT INTO " . self::TABLE_NAME . "(songname, artist, length)VALUES ('$songname', '$artist', '$length');";
         $rs = $this->db->query($sql);
 
         return $rs ? true : false;
@@ -105,7 +105,9 @@ class ChartsTable extends TableEntity
 
         $sql = "UPDATE " . self::TABLE_NAME . " "
             . "SET "
-            . "name = '$name' "
+            . "Songname = '$name' "
+            . "artist = '$artist' "
+            . "length = '$length' "
             . "WHERE id=$id;";
 
 

@@ -59,17 +59,37 @@ class ManagerController extends Controller  {
                     include_once 'views/view_navbar_3_panel.php'; //load the view                     
                     break;  
                 
-                case "menuitem1":
+                case "charts":
                     //create objects to generate view content
-                    $contentModel = new UnderConstruction($this->user, $this->db, $this->postArray,$this->pageTitle, strtoupper($this->getArray['pageID']), $this->getArray['pageID']);
+                    $contentModel = new ManagerCharts($this->user, $this->db, $this->postArray,$this->pageTitle, strtoupper($this->getArray['pageID']), $this->getArray['pageID']);
                     $navigationModel = new NavigationManager($this->user, $this->getArray['pageID']);
                     array_push($this->controllerObjects,$navigationModel,$contentModel);
                     $data = $this->getPageContent($contentModel,$navigationModel);  //get the page content from the models                 
                     $this->viewData = $data;  //put the content array into a class property for diagnostic purpose
                     //update the view
                     include_once 'views/view_navbar_2_panel.php';  //load the view                      
-                    break; 
-                
+                    break;
+                case "add":
+                    //create objects to generate view content
+                    $contentModel = new ManagerCharts($this->user, $this->db, $this->postArray,$this->pageTitle, strtoupper($this->getArray['pageID']), $this->getArray['pageID']);
+                    $navigationModel = new NavigationManager($this->user, $this->getArray['pageID']);
+                    array_push($this->controllerObjects,$navigationModel,$contentModel);
+                    $data = $this->getPageContent($contentModel,$navigationModel);  //get the page content from the models
+                    $this->viewData = $data;  //put the content array into a class property for diagnostic purpose
+                    //update the view
+                    include_once 'views/view_navbar_2_panel.php';  //load the view
+                    break;
+                case "delete":
+                    //create objects to generate view content
+                    $contentModel = new ManagerCharts($this->user, $this->db, $this->postArray,$this->pageTitle, strtoupper($this->getArray['pageID']), $this->getArray['pageID']);
+                    $navigationModel = new NavigationManager($this->user, $this->getArray['pageID']);
+                    array_push($this->controllerObjects,$navigationModel,$contentModel);
+                    $data = $this->getPageContent($contentModel,$navigationModel);  //get the page content from the models
+                    $this->viewData = $data;  //put the content array into a class property for diagnostic purpose
+                    //update the view
+                    include_once 'views/view_navbar_2_panel.php';  //load the view
+                    break;
+
                 case "logout":                    
                     //Change the login state to false
                     $this->user->logout();

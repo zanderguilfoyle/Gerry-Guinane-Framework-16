@@ -364,14 +364,29 @@ public static function form_add_msg($pageID){
 
         $form.='<label for="public">Is the playlist public or private<br>(public 1, private 0)</label><input type="number" class="form-control" id="public" name="public" min="0" max="1" >';
         $form.='</div> ';
-        $form.='<button type="submit" class="btn btn-default" value="create-playlist-button" name="create-playlist-button">Submit Message</button>';
+        $form.='<button type="submit" class="btn btn-default" value="btnSubmitChart" name="btnSubmitChart">Submit Message</button>';
         $form.='</form>';
         $form.='</div>';
         return $form;
     }
 
-    
-/**
+    public static function AddChartForm($pageID)
+    {
+        $form = '<div class="container-fluid">';
+        $form .= '<form method="post" action="index.php?pageID=' . $pageID . '">';
+
+        $form .= '<div class="form-group>';
+        $form .= '<label for="songname">Add song name:</label><textarea class="form-control" id="songname" name="songname" rows="1" style="resize:vertical"></textarea> ';
+        $form .= '<label for="artist">Add artist who released song:</label><textarea class="form-control" id="artist" name="artist" rows="1" style="resize:vertical"></textarea> ';
+        $form .= '<label for="length">How long is the song(in seconds):</label><input type="number" class="form-control" id="length" name="length" rows="1" style="resize:vertical"></input> ';
+        $form .= '</div> ';
+        $form.='<button type="submit" class="btn-default" value="create-playlist-button" name="create-playlist-button">Submit Message</button>';
+        $form.='</form>';
+        $form.='</div>';
+        return $form;
+    }
+
+        /**
  * Generates a HTML CONFIRM form (Button)
  * 
  * @param string $pageID The pageID of the page which will be used to process the login form. 

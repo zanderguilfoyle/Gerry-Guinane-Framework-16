@@ -97,6 +97,7 @@ include_once 'models/panelContent/CustomerMessages.php';
 //Page [Panel Content] Model Classes - MANAGER user
 include_once 'models/panelContent/ManagerHome.php';
 include_once 'models/panelContent/ManagerMyAccount.php';
+include_once 'models/panelContent/ManagerCharts.php';
 
 //****
 //**** Create a MySQLi connection to the database

@@ -46,7 +46,7 @@ class AdminHome extends PanelModel{
      * Set the Panel 1 heading 
      */
     public function setPanelHead_1(){
-            $this->panelHead_1='<h3>Web Application Framework</h3>';
+            $this->panelHead_1='<h3>Zpotify</h3>';
     }
      /**
      * Set the Panel 1 text content 
@@ -66,7 +66,7 @@ class AdminHome extends PanelModel{
      * Set the Panel 2 text content 
      */    
     public function setPanelContent_2(){
-        $this->panelContent_2='Thank you <b>'.$this->user->getUserFirstName().' '.$this->user->getUserLastName() .'</b> for logging in successfully as a ADMIN to the sample Web Application Framework. Please use the links above to manage this system and other users. <br><br>Don\'t forget to logout when you are done.';
+        $this->panelContent_2='Thank you <b>'.$this->user->getUserFirstName().' '.$this->user->getUserLastName() .'</b> for logging in successfully as a ADMIN to Zpotify. Please use the links above to manage this system and other users. <br><br>Don\'t forget to logout when you are done.';
     }  
 
     /**

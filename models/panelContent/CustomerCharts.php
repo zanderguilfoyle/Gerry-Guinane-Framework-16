@@ -73,7 +73,7 @@ class CustomerCharts extends PanelModel{
      */       
     public function setPanelContent_2(){
         //set the Middle panel content
-         $this->panelContent_2='This page allows you to view the top charts. only an admin or a manager can add or delete a chart<br><br>The length of the songs is displayed in seconds';
+         $this->panelContent_2='This page allows you to view the top charts. only a manager can add or delete a chart<br><br>The length of the songs is displayed in seconds';
     } 
 
     /**

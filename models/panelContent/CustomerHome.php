@@ -68,7 +68,7 @@ class CustomerHome extends PanelModel{
      */       
     public function setPanelContent_2(){
         //set the Middle panel content
-         $this->panelContent_2='Thank you <b>'.$this->user->getUserFirstName().' '.$this->user->getUserLastName() .'</b> for logging in successfully as a CUSTOMER to the sample Web Application Framework. Please use the links above to manage your account and send/receive messages. <br><br>Don\'t forget to logout when you are done.';
+         $this->panelContent_2='Thank you <b>'.$this->user->getUserFirstName().' '.$this->user->getUserLastName() .'</b> for logging in successfully as a CUSTOMER to the zpotifiy. Please use the links above to manage your account and send/receive messages and access the pages. <br><br>Don\'t forget to logout when you are done.';
     } 
 
     /**

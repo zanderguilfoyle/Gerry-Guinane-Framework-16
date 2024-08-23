@@ -82,18 +82,7 @@ class CustomerPlaylists extends PanelModel
             case "deleteplay":
                 $this->panelContent_1 = '';
 
-                if (isset($this->postArray['btnRecordSelected'])) {
-                    $table = new PlaylistTable($this->db);
-                    if ($table->deleteRecordbyID($this->postArray['recordSelected'])) {
-                        $this->panelContent_1 .= 'Playlist (playlistsID=' . $this->postArray['recordSelected'] . ') has been deleted';
-
-                    } else {
-                        $this->panelContent_1 .= 'Unable to delete selected record';
-                    }
-                    array_push($this->panelModelObjects, $table); #for diagnostic purposes
-                } else {
-                    $this->panelContent_1 .= 'Select a playlist to delete';
-                }
+                $this->deletePlaylistByIdIfRequested();
                 $this->panelContent_1 .= '<hr>';
 
                 $table = new PlaylistTable($this->db);
@@ -124,7 +113,7 @@ class CustomerPlaylists extends PanelModel
                 $this->panelHead_2 = '<h3>View Messages</h3>';
                 break;
             case "createplay":
-                $this->panelHead_2 = '<h3>Send Messages</h3>';
+                $this->panelHead_2 = '<h3>Playlist creation</h3>';
                 break;
             case "deleteplay":
                 $this->panelHead_2 = '<h3>Delete My Messages</h3>';
@@ -141,87 +130,10 @@ class CustomerPlaylists extends PanelModel
     public function setPanelContent_2()
     {
         switch ($this->pageID) {
-            case "messages":
-                $this->panelContent_2 = 'This messages sub-menu illustrates a number of different implementations of messaging between users - including live chat which utilises AJAX';
+            case "createplay":
+                $this->panelContent_2 = 'To create a playlist, enter a name, how many songs and public or private for the playlist and click the create button. After that is done make sure to view the playlist in the view tab to see the playlist you just created.';
                 break;
-            case "livechat":
-                if (isset($this->postArray['btnAddMsg'])) {
 
-
-                    //set the message recipient to ALL if its not specified in the form
-                    if (isset($this->postArray['msgTo'])) {
-                        $msgRecipient = $this->postArray['msgTo'];
-                    } else {
-                        $msgRecipient = 'ALL';
-                    }
-
-                    $table = new ChatMsgTable($this->db);
-
-                    //make sure the user has not addressed the message to their own ID
-                    if ($msgRecipient === $this->user->getUserID()) {
-                        $this->panelContent_2 = '<div id="chat">Chat messages will appear here if chat is enabled</div>';
-                        $this->panelContent_2 .= 'Message not sent - You cant address a message to yourself!';
-                    } else { //a legitimate recipient is specified - add the message to the chatMessage table
-                        $table = new ChatMsgTable($this->db);
-                        if ($table->addRecord($this->postArray, $this->user->getUserID(), $this->user->getUserType(), $msgRecipient)) {
-                            $this->panelContent_2 = '<div id="chat">Chat messages will appear here if chat is enabled</div>';
-                            $this->panelContent_2 .= '<hr>Message Sent Successfully ';
-                        } else { //something went wrong
-                            $this->panelContent_2 = '<div id="chat">Chat messages will appear here if chat is enabled</div>';
-                            $this->panelContent_2 .= 'Unable to update record';
-                        }
-                    }
-
-                } else {
-                    $this->panelContent_2 = '<div id="chat">Chat messages will appear here if chat is enabled</div>';
-                }
-
-                break;
-            case "viewMsgs":
-                $this->panelContent_2 = 'View Messages';
-                break;
-            case "sendMsg":
-                if (isset($this->postArray['btnAddMsg'])) {
-
-
-                    //set the message recipient to ALL if its not specified in the form
-                    if (isset($this->postArray['msgTo'])) {
-                        $msgRecipient = $this->postArray['msgTo'];
-                    } else {
-                        $msgRecipient = 'ALL';
-                    }
-
-                    //make sure the user has not addressed the message to their own ID
-                    if ($msgRecipient === $this->user->getUserID()) {
-                        $this->panelContent_2 = 'You cant address a message to yourself!';
-                    } else { //a legitimate recipient is specified - add the message to the chatMessage table
-                        $table = new ChatMsgTable($this->db);
-                        if ($table->addRecord($this->postArray, $this->user->getUserID(), $this->user->getUserType(), $msgRecipient)) {
-                            $this->panelContent_2 = 'Message Sent ';
-                        } else {
-                            $this->panelContent_2 = 'Unable to update record';
-                        }
-                    }
-
-
-                } else {
-                    $this->panelContent_2 = 'Send Messages';
-                }
-                break;
-            case "deleteMsg":
-                if (isset($this->postArray['btnRecordSelected'])) {
-                    $table = new ChatMsgTable($this->db);
-                    if ($table->deleteRecordbyID($this->postArray['recordSelected'])) {
-                        $this->panelContent_2 = 'Message (msgID=' . $this->postArray['recordSelected'] . ') has been deleted';
-                        $this->setPanelContent_1(); //update panel 1 content to show updated table of messages
-
-                    } else {
-                        $this->panelContent_2 = 'Unable to delete selected record';
-                    }
-                } else {
-                    $this->panelContent_2 = 'Select a message to delete';
-                }
-                break;
 
             default:
                 $this->panelContent_2 = 'Messages';
@@ -301,6 +213,25 @@ class CustomerPlaylists extends PanelModel
             }
         } else {
             $this->panelContent_1 .= 'Create a new playlist';
+        }
+    }
+
+    /**
+     * @return PlaylistTable
+     */
+    public function deletePlaylistByIdIfRequested()
+    {
+        if (isset($this->postArray['btnRecordSelected'])) {
+            $table = new PlaylistTable($this->db);
+            if ($table->deleteRecordbyID($this->postArray['recordSelected'])) {
+                $this->panelContent_1 .= 'Playlist (playlistsID=' . $this->postArray['recordSelected'] . ') has been deleted';
+
+            } else {
+                $this->panelContent_1 .= 'Unable to delete selected record';
+            }
+            array_push($this->panelModelObjects, $table); #for diagnostic purposes
+        } else {
+            $this->panelContent_1 .= 'Select a playlist to delete';
         }
     }
 
