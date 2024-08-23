@@ -38,7 +38,7 @@ define ('ENCRYPT_PW',TRUE);  //True if Passwords are hash encrypted
  * @global String PAGE_TITLE String containing the page title (appears in the browser tab) of all pages in this application.
  *
  */
-define ('PAGE_TITLE','DDA Framework'); //site wide page title (tab label at top of web page)
+define ('PAGE_TITLE','Zpotify'); //site wide page title (tab label at top of web page)
 
 //AJAX Configuration - read the SETUP INSTRUCTIONS
 
